@@ -2,6 +2,7 @@ require("dotenv").config();
 //Imports
 const express = require("express");
 const mongoose = require("mongoose");
+const bookRoutes = require("./routes/bookRoutes");
 
 //Express App
 const app = express();
@@ -15,9 +16,10 @@ app.use((req, res, next) => {
 });
 
 //Routes
+app.use("/api/books", bookRoutes);
 
 mongoose
-  .connect(process.env.PORT)
+  .connect(process.env.MONG_URL)
   .then(() => {
     app.listen(process.env.PORT, () => {
       console.log(
