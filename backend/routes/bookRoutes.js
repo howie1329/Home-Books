@@ -5,6 +5,7 @@ const {
   createBook,
   deleteBook,
   updateBook,
+  findBooks,
 } = require("../controllers/bookControllers");
 
 const router = express.Router();
@@ -25,3 +26,7 @@ router.delete("/:id", deleteBook);
 router.patch("/:id", updateBook);
 
 module.exports = router;
+
+/* test router for test controller of tags etc
+router.get("/:pages", findBooks);
+*/

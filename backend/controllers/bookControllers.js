@@ -79,4 +79,19 @@ const updateBook = async (req, res) => {
   res.status(200).json(book);
 };
 
-module.exports = { getBooks, getBook, createBook, deleteBook, updateBook };
+module.exports = {
+  getBooks,
+  getBook,
+  createBook,
+  deleteBook,
+  updateBook,
+  findBooks,
+};
+
+/* test controller for tags etc
+const findBooks = async (req, res) => {
+  const { pages } = req.params;
+  const response = await Book.find({ pages: { $gte: pages } });
+
+  res.status(200).json(response);
+}; */
