@@ -5,6 +5,11 @@ export default function Home() {
   return (
     <div>
       <BookListing title="Trending Books !!!" />
+      <BookListing title="Trending Books !!!" />
+      <BookListing title="Trending Books !!!" />
+      <BookListing title="Trending Books !!!" />
+      <BookListing title="Trending Books !!!" />
+      <BookListing title="Trending Books !!!" />
     </div>
   );
 }
