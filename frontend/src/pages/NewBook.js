@@ -2,7 +2,7 @@ import { React, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function NewBook() {
-  const [bookId, setBookId] = useState("");
+  const [book_id, setBookId] = useState("");
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
   const [pages, setPages] = useState("");
@@ -12,7 +12,7 @@ function NewBook() {
   const navigate = useNavigate();
 
   const handleSubmit = async () => {
-    const book = { bookId, title, author, pages, status, cost };
+    const book = { book_id, title, author, pages, status, cost };
     const response = await fetch("/api/books", {
       method: "POST",
       body: JSON.stringify(book),
@@ -62,6 +62,7 @@ function NewBook() {
           <input type="text" onChange={(e) => setCost(e.target.value)}></input>
         </form>
         <button onClick={(e) => handleSubmit()}>Add Book</button>
+        <button onClick={(e) => navigate("/admin")}>Cancel</button>
       </div>
     </div>
   );

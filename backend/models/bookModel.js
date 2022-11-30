@@ -25,7 +25,7 @@ const bookSchema = new Schema(
       required: true,
     },
     cost: {
-      type: Number,
+      type: String,
     },
     reviews: {
       type: [String],
