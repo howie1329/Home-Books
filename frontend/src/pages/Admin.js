@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import BookTable from "../components/BookTable";
 import UpdateBook from "../components/UpdateBook";
 
+//Admin page
 function Admin() {
   const navigate = useNavigate();
 
@@ -16,6 +17,7 @@ function Admin() {
   const [books, setBooks] = useState(null);
   const [active, setActive] = useState(false);
 
+  //Gets all books currently in database
   const getBooks = async () => {
     const response = await fetch("/api/books");
     const data = await response.json();
@@ -24,11 +26,12 @@ function Admin() {
     }
   };
 
-  const hidden = () => {
+  //Changes state of update form
+  const hiddenForm = () => {
     return "hidden";
   };
-
-  const show = () => {
+  //Changes state of update form
+  const showForm = () => {
     return "border-black border-2";
   };
 
@@ -89,7 +92,7 @@ function Admin() {
           setPages={setPages}
           setActive={setActive}
           getBooks={getBooks}
-          details={active ? show() : hidden()}
+          details={active ? showForm() : hiddenForm()}
         />
       </div>
       <button onClick={(e) => navigate("/newbook")}>Add New Book</button>

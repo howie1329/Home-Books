@@ -1,5 +1,5 @@
 import React from "react";
-
+//Creates Table Row Data of Book
 function BookTable({
   book_id,
   id,
@@ -13,11 +13,14 @@ function BookTable({
   setId,
   getBooks,
 }) {
+
+  //Edit fuction brings up update component
   const handleEdit = () => {
     setId(id);
     setActive(!active);
   };
 
+  //Deletes book from database then updates all books
   const handleDelete = async () => {
     const response = await fetch("/api/books/" + id, {
       method: "DELETE",

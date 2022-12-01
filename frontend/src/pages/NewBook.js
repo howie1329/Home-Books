@@ -1,6 +1,7 @@
 import { React, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+//New Book Page
 function NewBook() {
   const [book_id, setBookId] = useState("");
   const [title, setTitle] = useState("");
@@ -11,6 +12,8 @@ function NewBook() {
 
   const navigate = useNavigate();
 
+  //Submit Fucntion... sending book data back to database
+  //Needs to add error handling
   const handleSubmit = async () => {
     const book = { book_id, title, author, pages, status, cost };
     const response = await fetch("/api/books", {

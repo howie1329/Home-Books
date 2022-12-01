@@ -35,3 +35,9 @@ const bookSchema = new Schema(
 );
 
 module.exports = mongoose.model("Book", bookSchema);
+
+/* 
+Need to add tags type [strings] example [hot,trending,new]
+add genre to model example [fantasy, nonfiction, fiction] 
+Create Model for reviews [title, body] both strings
+*/

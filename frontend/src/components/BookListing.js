@@ -1,9 +1,15 @@
 import { React, useEffect, useState } from "react";
 
+/*
+Component for list books found in database
+Needs to add search by tag ability 
+*/
 function BookListing({ title }) {
+  //Book sent from database
   const [books, setBooks] = useState(null);
 
-  const bookListing = async () => {
+  //Get Books from database 
+  const getBooks = async () => {
     const response = await fetch("/api/books");
     const data = await response.json();
     if (response.ok) {
@@ -13,7 +19,7 @@ function BookListing({ title }) {
   };
 
   useEffect(() => {
-    bookListing();
+    getBooks();
   }, []);
 
   return (

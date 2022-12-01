@@ -1,5 +1,6 @@
 import React from "react";
 
+//Book Form for updating
 function UpdateBook({
   details,
   title,
@@ -12,6 +13,9 @@ function UpdateBook({
   setActive,
   getBooks,
 }) {
+  //Need to add validation and error response
+
+  //Submit function... sending book data back to database
   const handleSubmit = async () => {
     const book = { title, author, pages };
     const response = await fetch("/api/books/" + id, {
