@@ -12,7 +12,7 @@ function NewBook() {
 
   const navigate = useNavigate();
 
-  //Submit Fucntion... sending book data back to database
+  //Submit function... sending book data back to database
   //Needs to add error handling
   const handleSubmit = async () => {
     const book = { book_id, title, author, pages, status, cost };

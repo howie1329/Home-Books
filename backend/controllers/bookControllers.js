@@ -85,7 +85,6 @@ module.exports = {
   createBook,
   deleteBook,
   updateBook,
-  findBooks,
 };
 
 /* test controller for tags etc

@@ -63,14 +63,9 @@ function Admin() {
                 <BookTable
                   key={book._id}
                   id={book._id}
-                  book_id={book.book_id}
-                  title={book.title}
-                  author={book.author}
-                  pages={book.pages}
-                  cost={book.cost}
-                  status={book.status}
-                  setActive={setActive}
+                  book={book}
                   active={active}
+                  setActive={setActive}
                   setTitle={setTitle}
                   setAuthor={setAuthor}
                   setPages={setPages}
