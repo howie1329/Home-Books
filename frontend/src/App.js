@@ -6,7 +6,7 @@ import NavBar from "./components/NavBar";
 import Home from "./pages/Home";
 import Admin from "./pages/Admin";
 import NewBook from "./pages/NewBook";
-import BookReview from "./pages/BookReview";
+import BookReviewPage from "./pages/BookReviewPage";
 
 function App() {
   const [currentBook, setCurrentBook] = useState("");
@@ -21,7 +21,7 @@ function App() {
           <Route path="/newbook" element={<NewBook />} />
           <Route
             path="/bookreview"
-            element={<BookReview current={currentBook} />}
+            element={<BookReviewPage current={currentBook} />}
           />
         </Routes>
       </div>

@@ -32,7 +32,7 @@ const bookSchema = new Schema(
       default: [],
     },
     reviews: {
-      type: [String],
+      type: [Object],
     },
   },
   { timestamps: true }
