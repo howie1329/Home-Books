@@ -9,6 +9,7 @@ import NewBook from "./pages/NewBook";
 import BookReviewPage from "./pages/BookReviewPage";
 import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
+import SignInNavBar from "./components/SignInNavBar";
 
 function App() {
   const [currentBook, setCurrentBook] = useState("");
@@ -16,9 +17,22 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [role, setRole] = useState();
 
+  const navbar = () => {
+    if (loggedIn) {
+      return (
+        <SignInNavBar
+          setLoggedIn={setLoggedIn}
+          setCurrentUser={setCurrentUser}
+          setRole={setRole}
+        />
+      );
+    }
+    return <NavBar />;
+  };
+
   return (
     <BrowserRouter>
-      <NavBar />
+      {navbar()}
       <div>
         <Routes>
           <Route path="/" element={<Home setCurrentBook={setCurrentBook} />} />
