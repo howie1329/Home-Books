@@ -6,12 +6,16 @@ const {
   deleteBook,
   updateBook,
   findBooks,
+  getByTag,
 } = require("../controllers/bookControllers");
 
 const router = express.Router();
 
 //Get all books
 router.get("/", getBooks);
+
+//Get all books by a tag
+router.get("/t/:tag", getByTag);
 
 //Get single book
 router.get("/:id", getBook);

@@ -27,6 +27,10 @@ const bookSchema = new Schema(
     cost: {
       type: String,
     },
+    tags: {
+      type: [String],
+      default: [],
+    },
     reviews: {
       type: [String],
     },

@@ -4,13 +4,13 @@ import { React, useEffect, useState } from "react";
 Component for list books found in database
 Needs to add search by tag ability 
 */
-function BookListing({ title }) {
+function BookListing({ title, tagFilter }) {
   //Book sent from database
   const [books, setBooks] = useState(null);
 
-  //Get Books from database 
+  //Get Books from database
   const getBooks = async () => {
-    const response = await fetch("/api/books");
+    const response = await fetch("/api/books/t/" + tagFilter);
     const data = await response.json();
     if (response.ok) {
       console.log(data);

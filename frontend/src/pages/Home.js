@@ -5,8 +5,8 @@ import BookListing from "../components/BookListing";
 export default function Home() {
   return (
     <div>
-      <BookListing title="Trending Books !!!" />
-      <BookListing title="Trending Books !!!" />
+      <BookListing title="Trending Books !!!" tagFilter="hot" />
+      <BookListing title="Trending Books !!!" tagFilter="nonfiction" />
       <BookListing title="Trending Books !!!" />
       <BookListing title="Trending Books !!!" />
       <BookListing title="Trending Books !!!" />

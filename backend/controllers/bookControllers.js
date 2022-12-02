@@ -8,6 +8,14 @@ const getBooks = async (req, res) => {
   res.status(200).json(books);
 };
 
+//get book based on tag
+const getByTag = async (req, res) => {
+  const tag = req.params;
+  const books = await Book.find({ tags: { $all: [tag["tag"]] } });
+
+  res.status(200).json(books);
+};
+
 // get a single book
 const getBook = async (req, res) => {
   const { id } = req.params;
@@ -26,7 +34,8 @@ const getBook = async (req, res) => {
 };
 // Create a single book
 const createBook = async (req, res) => {
-  const { book_id, title, author, pages, status } = req.body;
+  const { book_id, title, author, pages, cost, status, tags, reviews } =
+    req.body;
   try {
     const book = await Book.create({
       book_id,
@@ -34,6 +43,9 @@ const createBook = async (req, res) => {
       author,
       pages,
       status,
+      cost,
+      tags,
+      reviews,
     });
     res.status(200).json(book);
   } catch (error) {
@@ -85,6 +97,7 @@ module.exports = {
   createBook,
   deleteBook,
   updateBook,
+  getByTag,
 };
 
 /* test controller for tags etc
