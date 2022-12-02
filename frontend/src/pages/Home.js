@@ -2,15 +2,19 @@ import React from "react";
 import BookListing from "../components/BookListing";
 
 //Home Page
-export default function Home() {
+export default function Home({ setCurrentBook }) {
   return (
     <div>
-      <BookListing title="Trending Books !!!" tagFilter="hot" />
-      <BookListing title="Trending Books !!!" tagFilter="nonfiction" />
-      <BookListing title="Trending Books !!!" />
-      <BookListing title="Trending Books !!!" />
-      <BookListing title="Trending Books !!!" />
-      <BookListing title="Trending Books !!!" />
+      <BookListing
+        title="Hot Books !!!"
+        tagFilter="hot"
+        setCurrentBook={setCurrentBook}
+      />
+      <BookListing
+        title="Top NonFiction Books !!!"
+        tagFilter="nonfiction"
+        setCurrentBook={setCurrentBook}
+      />
     </div>
   );
 }

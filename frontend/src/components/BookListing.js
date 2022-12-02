@@ -1,12 +1,15 @@
 import { React, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 /*
 Component for list books found in database
 Needs to add search by tag ability 
 */
-function BookListing({ title, tagFilter }) {
+function BookListing({ title, tagFilter, setCurrentBook }) {
   //Book sent from database
   const [books, setBooks] = useState(null);
+
+  const navigate = useNavigate();
 
   //Get Books from database
   const getBooks = async () => {
@@ -18,6 +21,11 @@ function BookListing({ title, tagFilter }) {
     }
   };
 
+  const onClick = (item) => {
+    setCurrentBook(item);
+    navigate("/bookreview");
+  };
+
   useEffect(() => {
     getBooks();
   }, []);
@@ -25,7 +33,12 @@ function BookListing({ title, tagFilter }) {
   return (
     <div>
       <p>{title}</p>
-      <ul>{books && books.map((book) => <li>{book.title}</li>)}</ul>
+      <ul>
+        {books &&
+          books.map((book) => (
+            <li onClick={(e) => onClick(book)}>{book.title}</li>
+          ))}
+      </ul>
     </div>
   );
 }
