@@ -6,7 +6,7 @@ import BookTable from "../components/BookTable";
 import UpdateBook from "../components/UpdateBook";
 
 //Admin page
-function Admin() {
+function Admin({ currentUser }) {
   const navigate = useNavigate();
 
   const [id, setId] = useState();
@@ -41,7 +41,7 @@ function Admin() {
 
   return (
     <div>
-      <h1>Admin Page</h1>
+      <h1>{currentUser.fullname}'s Admin Page</h1>
       <div>
         <p>Book List</p>
         <table>

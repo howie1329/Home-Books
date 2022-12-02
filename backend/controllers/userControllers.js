@@ -7,10 +7,16 @@ const getUsers = async (req, res) => {
   res.status(200).json(users);
 };
 
-//get a single user
+//get a single user by ID
 const getUser = async (req, res) => {
   const { id } = req.params;
   const user = await User.find({ user_id: id });
+  res.status(200).json(user);
+};
+
+const getUsername = async (req, res) => {
+  const { name } = req.params;
+  const user = await User.find({ username: name });
   res.status(200).json(user);
 };
 
@@ -41,4 +47,4 @@ const deleteUser = async (req, res) => {
   res.status(200).json(user);
 };
 
-module.exports = { deleteUser, createUser, getUser, getUsers };
+module.exports = { deleteUser, createUser, getUser, getUsers, getUsername };

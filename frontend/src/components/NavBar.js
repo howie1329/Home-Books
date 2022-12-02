@@ -16,7 +16,7 @@ function NavBar() {
       />
       <button
         className="border-2 border-black"
-        onClick={(e) => navigate("/admin")}
+        onClick={(e) => navigate("/signin")}
       >
         Sign In
       </button>
