@@ -16,11 +16,12 @@ const getUser = async (req, res) => {
 
 //create a user
 const createUser = async (req, res) => {
-  const { user_id, username, password, role } = req.body;
+  const { user_id, fullname, username, password, role } = req.body;
 
   try {
     const user = await User.create({
       user_id,
+      fullname,
       username,
       password,
       role,

@@ -20,7 +20,12 @@ function NavBar() {
       >
         Sign In
       </button>
-      <button className="border-2 border-black">Sign Up</button>
+      <button
+        className="border-2 border-black"
+        onClick={(e) => navigate("/signup")}
+      >
+        Sign Up
+      </button>
     </div>
   );
 }
