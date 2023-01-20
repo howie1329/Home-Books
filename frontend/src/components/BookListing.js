@@ -11,6 +11,8 @@ function BookListing({ title, tagFilter, setCurrentBook }) {
 
   const navigate = useNavigate();
 
+
+  
   //Get Books from database
   const getBooks = async () => {
     const response = await fetch("/api/books/t/" + tagFilter);
