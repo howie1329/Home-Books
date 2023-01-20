@@ -13,7 +13,7 @@ import SignInNavBar from "./components/SignInNavBar";
 
 function App() {
   const [currentBook, setCurrentBook] = useState("");
-  const [currentUser, setCurrentUser] = useState();
+  const [currentUser, setCurrentUser] = useState(null);
   const [loggedIn, setLoggedIn] = useState(false);
   const [role, setRole] = useState();
 
@@ -43,11 +43,16 @@ function App() {
                 setCurrentUser={setCurrentUser}
                 setLoggedIn={setLoggedIn}
                 setRole={setRole}
+                loggedIn={loggedIn}
+                role={role}
               />
             }
           />
           <Route path="/signup" element={<SignUp />} />
-          <Route path="/admin" element={<Admin currentUser={currentUser} />} />
+          <Route
+            path="/admin"
+            element={<Admin currentUser={currentUser} loggedIn={loggedIn} />}
+          />
           <Route path="/newbook" element={<NewBook />} />
           <Route
             path="/bookreview"

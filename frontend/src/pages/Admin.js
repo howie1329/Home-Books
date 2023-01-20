@@ -40,12 +40,14 @@ function Admin({ currentUser }) {
   }, []);
 
   return (
-    <div>
-      <h1>{currentUser.fullname}'s Admin Page</h1>
-      <div>
-        <p>Book List</p>
-        <table>
-          <thead>
+    <div className="flex flex-col w-screen h-screen">
+      <h1 className="text-center underline">
+        {currentUser.fullname}'s Admin Page
+      </h1>
+      <div className="flex flex-col items-center">
+        <p className="underline">Book List</p>
+        <table className="border-2 border-black">
+          <thead className="border-2 border-black">
             <tr>
               <th>Book ID</th>
               <th>Title</th>
@@ -57,7 +59,7 @@ function Admin({ currentUser }) {
               <th>Delete</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="border-2 border-black">
             {books &&
               books.map((book) => (
                 <BookTable
@@ -90,7 +92,9 @@ function Admin({ currentUser }) {
           details={active ? showForm() : hiddenForm()}
         />
       </div>
-      <button onClick={(e) => navigate("/newbook")}>Add New Book</button>
+      <button className="mt-5" onClick={(e) => navigate("/newbook")}>
+        Add New Book
+      </button>
     </div>
   );
 }

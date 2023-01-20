@@ -31,12 +31,17 @@ function BookListing({ title, tagFilter, setCurrentBook }) {
   }, []);
 
   return (
-    <div>
-      <p>{title}</p>
+    <div className="flex flex-col border-2 border-black w-72 items-center">
+      <p className="underline">{title}</p>
       <ul>
         {books &&
           books.map((book) => (
-            <li onClick={(e) => onClick(book)}>{book.title}</li>
+            <li
+              className="flex underline justify-evenly"
+              onClick={(e) => onClick(book)}
+            >
+              <p className="flex flex-col gap-2">{book.title}</p>
+            </li>
           ))}
       </ul>
     </div>

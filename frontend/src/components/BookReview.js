@@ -9,6 +9,7 @@ function BookReview({ id, book }) {
     const review = { title, body };
     setReview([...reviews, review]);
     const book = { reviews };
+    console.log(book);
     const response = await fetch(`/api/books/${id}`, {
       method: "PATCH",
       body: JSON.stringify(book),
@@ -18,7 +19,7 @@ function BookReview({ id, book }) {
     });
   };
   return (
-    <div>
+    <div className="flex w-full flex-col items-center">
       <label>Review Title</label>
       <input type="text" onChange={(e) => setTitle(e.target.value)}></input>
       <label>Review Body</label>

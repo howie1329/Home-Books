@@ -15,7 +15,7 @@ function BookTable({ book, id, setActive, active, setId, getBooks }) {
     getBooks();
   };
   return (
-    <tr>
+    <tr className="border-2 border-black">
       <td>{book.book_id}</td>
       <td>{book.title}</td>
       <td>{book.author}</td>

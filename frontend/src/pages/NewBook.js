@@ -8,7 +8,7 @@ function NewBook() {
   const [author, setAuthor] = useState("");
   const [pages, setPages] = useState("");
   const [status, setStatus] = useState("");
-  const [tags, setTags] = useState(["test"]);
+  const [tags, setTags] = useState([]);
   const [cost, setCost] = useState("");
 
   const navigate = useNavigate();
@@ -28,45 +28,64 @@ function NewBook() {
   };
 
   return (
-    <div>
-      <div className="">
-        <form className="border-black border-2 flex flex-col">
-          <label>Book ID</label>
-          <input
-            type="text"
-            onChange={(e) => setBookId(e.target.value)}
-          ></input>
-          <label>Title</label>
-          <input type="text" onChange={(e) => setTitle(e.target.value)}></input>
-          <label>Author</label>
-          <input
-            type="text"
-            onChange={(e) => setAuthor(e.target.value)}
-          ></input>
-          <label>Pages</label>
-          <input type="text" onChange={(e) => setPages(e.target.value)}></input>
+    <div className="flex w-screen h-screen justify-center">
+      <div className="mt-14">
+        <form className=" border-black border-2">
+          <div className="flex">
+            <label>Book ID</label>
+            <input
+              type="text"
+              onChange={(e) => setBookId(e.target.value)}
+            ></input>
+          </div>
+          <div className="flex">
+            <label>Title</label>
+            <input
+              type="text"
+              onChange={(e) => setTitle(e.target.value)}
+            ></input>
+          </div>
+          <div className="flex">
+            <label>Author</label>
+            <input
+              type="text"
+              onChange={(e) => setAuthor(e.target.value)}
+            ></input>
+          </div>
+          <div className="flex">
+            <label>Pages</label>
+            <input
+              type="text"
+              onChange={(e) => setPages(e.target.value)}
+            ></input>
+          </div>
           <label>Status</label>
           <div className="flex gap-2">
+            <label>IN</label>
             <input
               type="radio"
               name="status"
               value="IN"
               onClick={(e) => setStatus(e.target.value)}
             ></input>
-            <label>IN</label>
+            <label>Out</label>
             <input
               type="radio"
               name="status"
               value="Out"
               onClick={(e) => setStatus(e.target.value)}
             ></input>
-            <label>Out</label>
           </div>
-          <label>Cost</label>
-          <input type="text" onChange={(e) => setCost(e.target.value)}></input>
-          <div>
+          <div className="flex">
+            <label>Cost</label>
+            <input
+              type="text"
+              onChange={(e) => setCost(e.target.value)}
+            ></input>
+          </div>
+          <div className="flex flex-col justify-evenly">
             <label>Tags</label>
-            <div>
+            <div className="">
               <input
                 onClick={(e) => setTags([...tags, e.target.value])}
                 type="checkbox"
@@ -112,8 +131,10 @@ function NewBook() {
             </div>
           </div>
         </form>
-        <button onClick={(e) => handleSubmit()}>Add Book</button>
-        <button onClick={(e) => navigate("/admin")}>Cancel</button>
+        <div className="flex justify-evenly mt-2">
+          <button onClick={(e) => handleSubmit()}>Add Book</button>
+          <button onClick={(e) => navigate("/admin")}>Cancel</button>
+        </div>
       </div>
     </div>
   );
