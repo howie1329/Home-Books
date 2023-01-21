@@ -1,6 +1,8 @@
 import { React, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { TextField, Button, Typography } from "@mui/material";
+
 function SignIn({ setCurrentUser, setLoggedIn, setRole, loggedIn, role }) {
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
@@ -31,35 +33,27 @@ function SignIn({ setCurrentUser, setLoggedIn, setRole, loggedIn, role }) {
     }
   };
 
-  const validate = () => {
-    if (loggedIn === false) {
-      return "flex";
-    } else {
-      return "hidden";
-    }
-  };
   return (
     <div className=" flex w-screen h-screen items-center justify-center ">
-      <div className="flex flex-col w-60 h-40 border-black border-2 place-content-center">
-        <div className="flex justify-center">
-          <p className="border-black border-2">Log IN</p>
-        </div>
-        <form className="flex flex-col items-center">
-          <label>Username:</label>
-          <input
-            type="text"
+      <div className="flex flex-col w-72 h-60 border-black border-2 rounded-xl justify-center items-center gap-4">
+        <div className="flex flex-col items-center">
+          <Typography variant="h4">Log In</Typography>
+          <TextField
+            label="Username"
+            variant="standard"
             onChange={(e) => setUsername(e.target.value)}
-            className="border-black border-2"
-          ></input>
-          <label>Password:</label>
-          <input
-            type="text"
+          />
+          <TextField
+            label="Password"
+            variant="standard"
             onChange={(e) => setPassword(e.target.value)}
-            className="border-black border-2"
-          ></input>
-        </form>
-        <p className={validate()}>Wrong Information Please Try Again</p>
-        <button onClick={(e) => handleSubmit()}>Sign IN</button>
+          />
+        </div>
+        <div>
+          <Button variant="contained" onClick={(e) => handleSubmit()}>
+            Sign IN
+          </Button>
+        </div>
       </div>
     </div>
   );

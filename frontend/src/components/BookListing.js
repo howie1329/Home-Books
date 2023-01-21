@@ -1,3 +1,4 @@
+import { Typography } from "@mui/material";
 import { React, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -11,8 +12,6 @@ function BookListing({ title, tagFilter, setCurrentBook }) {
 
   const navigate = useNavigate();
 
-
-  
   //Get Books from database
   const getBooks = async () => {
     const response = await fetch("/api/books/t/" + tagFilter);
@@ -33,8 +32,10 @@ function BookListing({ title, tagFilter, setCurrentBook }) {
   }, []);
 
   return (
-    <div className="flex flex-col border-2 border-black w-72 items-center">
-      <p className="underline">{title}</p>
+    <div className="flex flex-col border-2 border-black rounded-xl w-72 items-center p-2">
+      <Typography variant="h6" className="underline">
+        {title}
+      </Typography>
       <ul>
         {books &&
           books.map((book) => (

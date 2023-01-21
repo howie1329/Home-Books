@@ -1,6 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
+import { Button, Typography } from "@mui/material";
+
 //Simple Navbar
 function NavBar() {
   const navigate = useNavigate();
@@ -15,21 +17,17 @@ function NavBar() {
   };
 
   return (
-    <div className=" flex justify-evenly border-2 border-black">
-      <h1 onClick={(e) => navigate("/")}>Home Books</h1>
+    <div className=" flex justify-between border-2 border-black rounded-xl px-5 items-center">
+      <Typography variant="h6" onClick={(e) => navigate("/")}>
+        Home Books
+      </Typography>
       <div className="flex gap-10 ">
-        <button
-          className="border-2 border-black"
-          onClick={(e) => signInClick()}
-        >
+        <Button variant="contained" onClick={(e) => navigate("/signin")}>
           Sign In
-        </button>
-        <button
-          className="border-2 border-black"
-          onClick={(e) => navigate("/signup")}
-        >
+        </Button>
+        <Button variant="contained" onClick={(e) => navigate("/signup")}>
           Sign Up
-        </button>
+        </Button>
       </div>
     </div>
   );

@@ -1,6 +1,14 @@
 import { React, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import {
+  Checkbox,
+  InputLabel,
+  MenuItem,
+  TextField,
+  Button,
+} from "@mui/material";
+
 //New Book Page
 function NewBook() {
   const [book_id, setBookId] = useState("");
@@ -13,10 +21,16 @@ function NewBook() {
 
   const navigate = useNavigate();
 
+  const statusValues = [
+    { value: "IN", label: "In" },
+    { value: "Out", label: "Out" },
+  ];
+
   //Submit function... sending book data back to database
   //Needs to add error handling
   const handleSubmit = async () => {
     const book = { book_id, title, author, pages, status, cost, tags };
+    console.log(book);
     const response = await fetch("/api/books", {
       method: "POST",
       body: JSON.stringify(book),
@@ -30,110 +44,104 @@ function NewBook() {
   return (
     <div className="flex w-screen h-screen justify-center">
       <div className="mt-14">
-        <form className=" border-black border-2">
-          <div className="flex">
-            <label>Book ID</label>
-            <input
-              type="text"
-              onChange={(e) => setBookId(e.target.value)}
-            ></input>
-          </div>
-          <div className="flex">
-            <label>Title</label>
-            <input
-              type="text"
-              onChange={(e) => setTitle(e.target.value)}
-            ></input>
-          </div>
-          <div className="flex">
-            <label>Author</label>
-            <input
-              type="text"
-              onChange={(e) => setAuthor(e.target.value)}
-            ></input>
-          </div>
-          <div className="flex">
-            <label>Pages</label>
-            <input
-              type="text"
-              onChange={(e) => setPages(e.target.value)}
-            ></input>
-          </div>
-          <label>Status</label>
-          <div className="flex gap-2">
-            <label>IN</label>
-            <input
-              type="radio"
-              name="status"
-              value="IN"
-              onClick={(e) => setStatus(e.target.value)}
-            ></input>
-            <label>Out</label>
-            <input
-              type="radio"
-              name="status"
-              value="Out"
-              onClick={(e) => setStatus(e.target.value)}
-            ></input>
-          </div>
-          <div className="flex">
-            <label>Cost</label>
-            <input
-              type="text"
-              onChange={(e) => setCost(e.target.value)}
-            ></input>
-          </div>
-          <div className="flex flex-col justify-evenly">
-            <label>Tags</label>
-            <div className="">
-              <input
-                onClick={(e) => setTags([...tags, e.target.value])}
-                type="checkbox"
-                id="tags"
+        <div className="flex flex-col gap-2">
+          <TextField
+            label="Book ID"
+            variant="standard"
+            onChange={(e) => setBookId(e.target.value)}
+          />
+          <TextField
+            label="Title"
+            variant="standard"
+            onChange={(e) => setTitle(e.target.value)}
+          />
+          <TextField
+            label="Author"
+            variant="standard"
+            onChange={(e) => setAuthor(e.target.value)}
+          />
+          <TextField
+            label="Pages"
+            variant="standard"
+            inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }}
+            onChange={(e) => setPages(e.target.value)}
+          />
+          <TextField
+            select
+            label="Status"
+            value={status}
+            onChange={(e) => setStatus(e.target.value)}
+          >
+            {statusValues.map((options) => (
+              <MenuItem key={options.value} value={options.value}>
+                {options.label}
+              </MenuItem>
+            ))}
+          </TextField>
+          <TextField
+            label="Cost"
+            variant="standard"
+            inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }}
+            onChange={(e) => setCost(e.target.value)}
+          />
+          <div className="flex flex-row">
+            <div className="flex items-center">
+              <Checkbox
+                label="hot"
                 value="hot"
-              ></input>
-              <label for="tags">Hot</label>
-              <input
                 onClick={(e) => setTags([...tags, e.target.value])}
-                type="checkbox"
-                id="tags"
+              />
+              <InputLabel>Hot</InputLabel>
+            </div>
+            <div className="flex items-center">
+              <Checkbox
+                label="trending"
                 value="trending"
-              ></input>
-              <label for="tags">Trending</label>
-              <input
                 onClick={(e) => setTags([...tags, e.target.value])}
-                type="checkbox"
-                id="tags"
+              />
+              <InputLabel>Trending</InputLabel>
+            </div>
+            <div className="flex items-center">
+              <Checkbox
+                label="nonfiction"
                 value="nonfiction"
-              ></input>
-              <label for="tags">Non-Fiction</label>
-              <input
                 onClick={(e) => setTags([...tags, e.target.value])}
-                type="checkbox"
-                id="tags"
+              />
+              <InputLabel>Non-Fiction</InputLabel>
+            </div>
+            <div className="flex items-center">
+              <Checkbox
+                label="fiction"
                 value="Fiction"
-              ></input>
-              <label for="tags">Fiction</label>
-              <input
                 onClick={(e) => setTags([...tags, e.target.value])}
-                type="checkbox"
-                id="tags"
+              />
+              <InputLabel>Fiction</InputLabel>
+            </div>
+            <div className="flex items-center">
+              <Checkbox
+                label="fantasy"
                 value="fantasy"
-              ></input>
-              <label for="tags">Fantasy</label>
-              <input
                 onClick={(e) => setTags([...tags, e.target.value])}
-                type="checkbox"
-                id="tags"
+              />
+              <InputLabel>Fantasy</InputLabel>
+            </div>
+            <div className="flex items-center">
+              <Checkbox
+                label="romance"
                 value="romance"
-              ></input>
-              <label for="tags">Romance</label>
+                onClick={(e) => setTags([...tags, e.target.value])}
+              />
+              <InputLabel>Romance</InputLabel>
             </div>
           </div>
-        </form>
+        </div>
         <div className="flex justify-evenly mt-2">
-          <button onClick={(e) => handleSubmit()}>Add Book</button>
-          <button onClick={(e) => navigate("/admin")}>Cancel</button>
+          <Button variant="contained" onClick={(e) => handleSubmit()}>
+            Add Book
+          </Button>
+          <Button variant="contained" onClick={(e) => navigate("/admin")}>
+            Cancel
+          </Button>
         </div>
       </div>
     </div>

@@ -1,5 +1,6 @@
 import React from "react";
 
+import { TextField, Button } from "@mui/material";
 //Book Form for updating
 function UpdateBook({
   details,
@@ -32,27 +33,26 @@ function UpdateBook({
     <div>
       <div className={details}>
         <p>Update Your Book</p>
-        <form className="flex flex-col">
-          <label>Title:</label>
-          <input
-            className="border-black border-2"
-            type="text"
+        <div className="flex flex-col">
+          <TextField
+            label="Title"
+            variant="standard"
             onChange={(e) => setTitle(e.target.value)}
-          ></input>
-          <label>Author:</label>
-          <input
-            className="border-black border-2"
-            type="text"
+          />
+          <TextField
+            label="Author"
+            variant="standard"
             onChange={(e) => setAuthor(e.target.value)}
-          ></input>
-          <label>Pages:</label>
-          <input
-            className="border-black border-2"
-            type="number"
+          />
+          <TextField
+            label="Pages"
+            variant="standard"
             onChange={(e) => setPages(e.target.value)}
-          ></input>
-        </form>
-        <button onClick={(e) => handleSubmit()}>Submit</button>
+          />
+        </div>
+        <Button variant="contained" onClick={(e) => handleSubmit()}>
+          Submit
+        </Button>
       </div>
     </div>
   );

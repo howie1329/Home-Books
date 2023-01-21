@@ -1,6 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
+import { Typography, Button } from "@mui/material";
+
 //Simple Navbar
 function SignInNavBar({ setLoggedIn, setCurrentUser, setRole }) {
   const navigate = useNavigate();
@@ -13,17 +15,11 @@ function SignInNavBar({ setLoggedIn, setCurrentUser, setRole }) {
   };
 
   return (
-    <div className=" flex justify-around border-2 border-black">
-      <p>Logo Picture</p>
-      <h1>Home Books</h1>
-      <input
-        type="text"
-        placeholder="Search"
-        className="border-2 border-black"
-      />
-      <button className="border-2 border-black" onClick={(e) => signout()}>
+    <div className=" flex justify-between rounded-xl items-center border-2 border-black px-5 mb-3">
+      <Typography variant="h6">Home Books</Typography>
+      <Button variant="contained" onClick={(e) => signout()}>
         Sign Out
-      </button>
+      </Button>
     </div>
   );
 }

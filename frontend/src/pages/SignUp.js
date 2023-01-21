@@ -1,6 +1,15 @@
 import { React, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import {
+  TextField,
+  RadioGroup,
+  Radio,
+  Button,
+  FormControlLabel,
+  Typography,
+} from "@mui/material";
+
 function SignUp() {
   const [user_id, setUser_id] = useState();
   const [fullname, setFullname] = useState();
@@ -24,68 +33,60 @@ function SignUp() {
 
   return (
     <div className="flex w-screen h-screen justify-center items-center">
-      <div className="flex flex-col w-80 h-60 border-black border-2 items-center">
-        <p>Sign Up!!!</p>
+      <div className="flex flex-col w-80 h-76 border-black border-2 rounded-xl justify-center items-center p-4">
+        <Typography variant="h5"> Sign Up</Typography>
         <div className="flex flex-col">
           <form className="flex flex-col">
-            <div className="flex">
-              <label>UserID:</label>
-              <input
-                type="text"
-                onChange={(e) => setUser_id(e.target.value)}
-                className="border-black border-2"
-              ></input>
-            </div>
-            <div className="flex">
-              <label>Full Name:</label>
-              <input
-                type="text"
-                onChange={(e) => setFullname(e.target.value)}
-                className="border-black border-2"
-              ></input>
-            </div>
-            <div className="flex">
-              <label>Username:</label>
-              <input
-                type="text"
-                onChange={(e) => setUsername(e.target.value)}
-                className="border-black border-2"
-              ></input>
-            </div>
-            <div className="flex">
-              <label>Password:</label>
-              <input
-                type="text"
-                onChange={(e) => setPassword(e.target.value)}
-                className="border-black border-2"
-              ></input>
-            </div>
-            <label className="self-center underline">Roles</label>
-            <div className="flex justify-evenly">
-              <label>Admin</label>
-              <input
-                type="radio"
-                value="admin"
-                name="role"
-                onClick={(e) => setRole(e.target.value)}
-              ></input>
-            </div>
-            <div className="flex justify-evenly">
-              <label>Regular User</label>
-              <input
-                type="radio"
-                value="reg"
-                name="role"
-                onClick={(e) => setRole(e.target.value)}
-              ></input>
-            </div>
+            <TextField
+              label="UserID"
+              variant="standard"
+              onChange={(e) => setUser_id(e.target.value)}
+            />
+            <TextField
+              label="Full Name"
+              variant="standard"
+              onChange={(e) => setFullname(e.target.value)}
+            />
+            <TextField
+              label="Username"
+              variant="standard"
+              onChange={(e) => setUsername(e.target.value)}
+            />
+            <TextField
+              label="Password"
+              variant="standard"
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <RadioGroup>
+              <div className="flex flex-row">
+                <FormControlLabel
+                  value="admin"
+                  control={
+                    <Radio
+                      value="admin"
+                      onClick={(e) => setRole(e.target.value)}
+                    />
+                  }
+                  label="Admin"
+                  onClick={(e) => setRole(e.target.value)}
+                />
+                <FormControlLabel
+                  value="reg"
+                  control={
+                    <Radio
+                      value="reg"
+                      onClick={(e) => setRole(e.target.value)}
+                    />
+                  }
+                  label="Regular User"
+                  onClick={(e) => setRole(e.target.value)}
+                />
+              </div>
+            </RadioGroup>
           </form>
-          <button
-            className="self-center border-black border-2"
-            onClick={(e) => handleSubmit()}
-          >
+          <Button variant="contained" onClick={(e) => handleSubmit()}>
             Submit
-          </button>
+          </Button>
         </div>
       </div>
     </div>

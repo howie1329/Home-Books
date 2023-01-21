@@ -1,3 +1,10 @@
+import {
+  Card,
+  CardContent,
+  List,
+  Typography,
+  ListItemText,
+} from "@mui/material";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -7,28 +14,38 @@ function BookReviewPage({ current }) {
   const navigate = useNavigate();
   const book = current;
   return (
-    <div className="flex flex-col justify-center border-black border-2">
-      <div className="flex gap-5">
-        <p>Title: {book.title}</p>
-        <p>Author: {book.author}</p>
-        <p>Cost: ${book.cost}</p>
-      </div>
-      <div className="flex gap-2">
-        Tags:
-        {book.tags.map((item) => {
-          return <p>{item}</p>;
-        })}
-      </div>
-      <div className="flex flex-col">
-        <p>Reviews:</p>
-        {book.reviews.map((item) => (
-          <div className="flex flex-col">
-            <p className="underline">{item.title}</p>
-            <p>{item.body}</p>
-          </div>
-        ))}
-      </div>
-      <div className="flex border-black border-2">
+    <div className="flex min-w-full justify-center items-center gap-4 mt-10">
+      <Card className="p-3 ">
+        <CardContent>
+          <Typography className="underline" variant="h6">
+            {book.title}
+          </Typography>
+          <Typography variant="subtitle2">Author: {book.author}</Typography>
+          <Typography variant="subtitle2">Cost: ${book.cost}</Typography>
+          <List>
+            Tags:
+            {book.tags.map((item) => (
+              <ListItemText>{item}</ListItemText>
+            ))}
+          </List>
+        </CardContent>
+      </Card>
+      <div className="flex flex-col gap-4">
+        <Card>
+          <CardContent>
+            <Typography>What People Are Saying:</Typography>
+            <List>
+              {book.reviews.map((item) => (
+                <>
+                  <ListItemText className="underline">
+                    {item.title}
+                  </ListItemText>
+                  <ListItemText>{item.body}</ListItemText>
+                </>
+              ))}
+            </List>
+          </CardContent>
+        </Card>
         <BookReview id={book._id} book={book} />
       </div>
     </div>

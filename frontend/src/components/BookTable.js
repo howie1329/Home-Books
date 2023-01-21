@@ -1,4 +1,7 @@
 import React from "react";
+
+import { TableRow, TableCell, Button } from "@mui/material";
+
 //Creates Table Row Data of Book
 function BookTable({ book, id, setActive, active, setId, getBooks }) {
   //Edit function brings up update component
@@ -15,20 +18,28 @@ function BookTable({ book, id, setActive, active, setId, getBooks }) {
     getBooks();
   };
   return (
-    <tr className="border-2 border-black">
-      <td>{book.book_id}</td>
-      <td>{book.title}</td>
-      <td>{book.author}</td>
-      <td>{book.pages}</td>
-      <td>{book.status}</td>
-      <td>{book.cost}</td>
-      <td>
-        <button onClick={(e) => handleEdit()}>Edit</button>
-      </td>
-      <td>
-        <button onClick={(e) => handleDelete()}>Delete</button>
-      </td>
-    </tr>
+    <TableRow>
+      <TableCell className="border-2 border-black">{book.book_id}</TableCell>
+      <TableCell className="border-2 border-black">{book.title}</TableCell>
+      <TableCell className="border-2 border-black">{book.author}</TableCell>
+      <TableCell className="border-2 border-black">{book.pages}</TableCell>
+      <TableCell className="border-2 border-black">{book.status}</TableCell>
+      <TableCell className="border-2 border-black">{book.cost}</TableCell>
+      <TableCell className="border-2 border-black">
+        <Button variant="contained" onClick={(e) => handleEdit()}>
+          Edit
+        </Button>
+      </TableCell>
+      <TableCell className="border-2 border-black">
+        <Button
+          variant="contained"
+          color="error"
+          onClick={(e) => handleDelete()}
+        >
+          Delete
+        </Button>
+      </TableCell>
+    </TableRow>
   );
 }
 

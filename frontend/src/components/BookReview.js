@@ -1,3 +1,4 @@
+import { TextField, Button, Card } from "@mui/material";
 import { React, useState } from "react";
 
 function BookReview({ id, book }) {
@@ -19,13 +20,25 @@ function BookReview({ id, book }) {
     });
   };
   return (
-    <div className="flex w-full flex-col items-center">
-      <label>Review Title</label>
-      <input type="text" onChange={(e) => setTitle(e.target.value)}></input>
-      <label>Review Body</label>
-      <input type="text" onChange={(e) => setBody(e.target.value)}></input>
-      <button onClick={(e) => handleSubmit()}>Submit</button>
-    </div>
+    <Card className="flex flex-col items-center gap-2 p-2">
+      <TextField
+        label="Review Title"
+        variant="standard"
+        onChange={(e) => setTitle(e.target.value)}
+      />
+      <TextField
+        label="Description"
+        variant="standard"
+        onChange={(e) => setBody(e.target.value)}
+      />
+      <Button
+        className="w-64"
+        variant="contained"
+        onClick={(e) => handleSubmit()}
+      >
+        Submit
+      </Button>
+    </Card>
   );
 }
 

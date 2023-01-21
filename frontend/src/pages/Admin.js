@@ -4,6 +4,16 @@ import { useNavigate } from "react-router-dom";
 //Component Imports
 import BookTable from "../components/BookTable";
 import UpdateBook from "../components/UpdateBook";
+import {
+  Table,
+  TableHead,
+  TableBody,
+  TableContainer,
+  TableRow,
+  TableCell,
+  Button,
+  Typography,
+} from "@mui/material";
 
 //Admin page
 function Admin({ currentUser }) {
@@ -32,7 +42,7 @@ function Admin({ currentUser }) {
   };
   //Changes state of update form
   const showForm = () => {
-    return "border-black border-2";
+    return "flex flex-col p-5 border-black border-2 rounded-xl gap-2 items-center";
   };
 
   useEffect(() => {
@@ -40,26 +50,28 @@ function Admin({ currentUser }) {
   }, []);
 
   return (
-    <div className="flex flex-col w-screen h-screen">
-      <h1 className="text-center underline">
+    <div className="flex flex-col w-screen h-screen items-center">
+      <Typography variant="h6" className="text-center underline">
         {currentUser.fullname}'s Admin Page
-      </h1>
-      <div className="flex flex-col items-center">
-        <p className="underline">Book List</p>
-        <table className="border-2 border-black">
-          <thead className="border-2 border-black">
-            <tr>
-              <th>Book ID</th>
-              <th>Title</th>
-              <th>Author</th>
-              <th>Pages</th>
-              <th>Status</th>
-              <th>Cost</th>
-              <th>Edit</th>
-              <th>Delete</th>
-            </tr>
-          </thead>
-          <tbody className="border-2 border-black">
+      </Typography>
+      <div className="flex flex-col items-center mb-3">
+        <Typography variant="subtitle" className="underline">
+          Book List
+        </Typography>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell>Book ID</TableCell>
+              <TableCell>Title</TableCell>
+              <TableCell>Author</TableCell>
+              <TableCell>Pages</TableCell>
+              <TableCell>Status</TableCell>
+              <TableCell>Cost</TableCell>
+              <TableCell>Edit</TableCell>
+              <TableCell>Delete</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody className="border-2 border-black">
             {books &&
               books.map((book) => (
                 <BookTable
@@ -75,8 +87,8 @@ function Admin({ currentUser }) {
                   getBooks={getBooks}
                 />
               ))}
-          </tbody>
-        </table>
+          </TableBody>
+        </Table>
       </div>
       <div>
         <UpdateBook
@@ -92,9 +104,9 @@ function Admin({ currentUser }) {
           details={active ? showForm() : hiddenForm()}
         />
       </div>
-      <button className="mt-5" onClick={(e) => navigate("/newbook")}>
+      <Button variant="contained" onClick={(e) => navigate("/newbook")}>
         Add New Book
-      </button>
+      </Button>
     </div>
   );
 }
