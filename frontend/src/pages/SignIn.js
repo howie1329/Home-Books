@@ -24,6 +24,7 @@ function SignIn({ setCurrentUser, setLoggedIn, setRole, loggedIn, role }) {
         setRole(data[0].role);
         setLoggedIn(true);
         roleDirection(data[0].role, true);
+        document.cookie = "status=in";
       }
     } else {
       alert("username or password is wrong");
