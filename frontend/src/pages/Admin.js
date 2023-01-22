@@ -69,6 +69,7 @@ function Admin({ currentUser }) {
               <TableCell>Cost</TableCell>
               <TableCell>Edit</TableCell>
               <TableCell>Delete</TableCell>
+              <TableCell>Check In/Out</TableCell>
             </TableRow>
           </TableHead>
           <TableBody className="border-2 border-black">
@@ -104,9 +105,11 @@ function Admin({ currentUser }) {
           details={active ? showForm() : hiddenForm()}
         />
       </div>
-      <Button variant="contained" onClick={(e) => navigate("/newbook")}>
-        Add New Book
-      </Button>
+      <div className="flex gap-2">
+        <Button variant="contained" onClick={(e) => navigate("/newbook")}>
+          Add New Book
+        </Button>
+      </div>
     </div>
   );
 }

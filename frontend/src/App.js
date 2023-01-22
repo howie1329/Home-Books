@@ -10,6 +10,7 @@ import BookReviewPage from "./pages/BookReviewPage";
 import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
 import SignInNavBar from "./components/SignInNavBar";
+import CheckOut from "./pages/CheckOut";
 
 function App() {
   const [currentBook, setCurrentBook] = useState("");
@@ -53,6 +54,7 @@ function App() {
             path="/admin"
             element={<Admin currentUser={currentUser} loggedIn={loggedIn} />}
           />
+          <Route path="/checkout" element={<CheckOut />} />
           <Route path="/newbook" element={<NewBook />} />
           <Route
             path="/bookreview"
