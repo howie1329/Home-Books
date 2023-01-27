@@ -3,33 +3,38 @@ import { useNavigate } from "react-router-dom";
 
 import { TextField, Button, Typography } from "@mui/material";
 
-function SignIn({ setCurrentUser, setLoggedIn, setRole, loggedIn, role }) {
+//Redux
+import { signIn, roleDirection } from "../app/features/users/userSlice";
+import { useDispatch, useSelector } from "react-redux";
+
+function SignIn() {
+  const role = useSelector((state) => state.users.role);
+  const loggedIn = useSelector((state) => state.users.loggedIn);
+
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
   const navigate = useNavigate();
 
-  const roleDirection = (role, loggedIn) => {
-    if (role === "admin" && loggedIn === true) {
-      navigate("/admin");
-    } else {
-      navigate("/reguser");
-    }
-  };
+  //Redux
+  const dispatch = useDispatch();
+  //Redux
 
   const handleSubmit = async () => {
     const response = await fetch(`/api/users/user/${username}`);
     const data = await response.json();
     if (response.ok) {
       if (password === data[0].password) {
-        setCurrentUser(data[0]);
-        console.log(data[0]);
-        setRole(data[0].role);
-        setLoggedIn(true);
-        roleDirection(data[0].role, true);
+        const payData = {
+          currentUserID: data[0],
+          role: data[0].role,
+          loggedIn: true,
+        };
+        dispatch(signIn(payData));
+        navigate(roleDirection(data[0].role, true));
         document.cookie = "status=in";
+      } else {
+        alert("username or password is wrong");
       }
-    } else {
-      alert("username or password is wrong");
     }
   };
 

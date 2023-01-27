@@ -8,33 +8,34 @@ import {
   Table,
   TableHead,
   TableBody,
-  TableContainer,
   TableRow,
   TableCell,
   Button,
   Typography,
 } from "@mui/material";
 
+import axios from "axios";
+
+//Redux Import
+import { getAllBooks } from "../app/features/books/bookSlice";
+import { useSelector, useDispatch } from "react-redux";
+
 //Admin page
-function Admin({ currentUser }) {
+function Admin() {
   const navigate = useNavigate();
 
+  //Redux
+  let currentUser = useSelector((state) => state.users.currentUserID);
+  const dispatch = useDispatch();
+  //Redux
+
+  const [books, setBooks] = useState();
   const [id, setId] = useState();
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
   const [pages, setPages] = useState("");
 
-  const [books, setBooks] = useState(null);
   const [active, setActive] = useState(false);
-
-  //Gets all books currently in database
-  const getBooks = async () => {
-    const response = await fetch("/api/books");
-    const data = await response.json();
-    if (response.ok) {
-      setBooks(data);
-    }
-  };
 
   //Changes state of update form
   const hiddenForm = () => {
@@ -43,6 +44,12 @@ function Admin({ currentUser }) {
   //Changes state of update form
   const showForm = () => {
     return "flex flex-col p-5 border-black border-2 rounded-xl gap-2 items-center";
+  };
+
+  const getBooks = async () => {
+    const response = await axios.get("/api/books");
+    setBooks(response.data);
+    dispatch(getAllBooks());
   };
 
   useEffect(() => {
@@ -80,12 +87,12 @@ function Admin({ currentUser }) {
                   id={book._id}
                   book={book}
                   active={active}
+                  getBooks={getBooks}
                   setActive={setActive}
                   setTitle={setTitle}
                   setAuthor={setAuthor}
                   setPages={setPages}
                   setId={setId}
-                  getBooks={getBooks}
                 />
               ))}
           </TableBody>
@@ -101,7 +108,7 @@ function Admin({ currentUser }) {
           setAuthor={setAuthor}
           setPages={setPages}
           setActive={setActive}
-          getBooks={getBooks}
+          getBooks={getAllBooks}
           details={active ? showForm() : hiddenForm()}
         />
       </div>

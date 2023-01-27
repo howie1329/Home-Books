@@ -1,16 +1,18 @@
-import React from "react";
+import { React } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { Typography, Button } from "@mui/material";
 
+import { useDispatch } from "react-redux";
+import { signOut } from "../app/features/users/userSlice";
+
 //Simple Navbar
-function SignInNavBar({ setLoggedIn, setCurrentUser, setRole }) {
+function SignInNavBar() {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const signout = () => {
-    setCurrentUser("");
-    setRole("");
-    setLoggedIn(false);
+    dispatch(signOut());
     navigate("/");
   };
 

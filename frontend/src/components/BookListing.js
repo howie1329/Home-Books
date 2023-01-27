@@ -2,11 +2,16 @@ import { Typography } from "@mui/material";
 import { React, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { setCurrentBook } from "../app/features/books/bookSlice";
+import { useDispatch } from "react-redux";
+
 /*
 Component for list books found in database
 Needs to add search by tag ability 
 */
-function BookListing({ title, tagFilter, setCurrentBook }) {
+function BookListing({ title, tagFilter }) {
+  const dispatch = useDispatch();
+
   //Book sent from database
   const [books, setBooks] = useState(null);
 
@@ -23,7 +28,7 @@ function BookListing({ title, tagFilter, setCurrentBook }) {
   };
 
   const onClick = (item) => {
-    setCurrentBook(item);
+    dispatch(setCurrentBook(item));
     navigate("/bookreview");
   };
 

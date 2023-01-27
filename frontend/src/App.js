@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NavBar from "./components/NavBar";
 
@@ -11,55 +11,24 @@ import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
 import SignInNavBar from "./components/SignInNavBar";
 import CheckOut from "./pages/CheckOut";
+import ProtectedRoute from "./components/ProtectedRoute";
 
+import { useSelector } from "react-redux";
 function App() {
-  const [currentBook, setCurrentBook] = useState("");
-  const [currentUser, setCurrentUser] = useState(null);
-  const [loggedIn, setLoggedIn] = useState(false);
-  const [role, setRole] = useState();
-
-  const navbar = () => {
-    if (loggedIn) {
-      return (
-        <SignInNavBar
-          setLoggedIn={setLoggedIn}
-          setCurrentUser={setCurrentUser}
-          setRole={setRole}
-        />
-      );
-    }
-    return <NavBar />;
-  };
+  const currentLog = useSelector((state) => state.users.loggedIn);
 
   return (
     <BrowserRouter>
-      {navbar()}
+      {currentLog ? <SignInNavBar /> : <NavBar />}
       <div>
         <Routes>
-          <Route path="/" element={<Home setCurrentBook={setCurrentBook} />} />
-          <Route
-            path="/signin"
-            element={
-              <SignIn
-                setCurrentUser={setCurrentUser}
-                setLoggedIn={setLoggedIn}
-                setRole={setRole}
-                loggedIn={loggedIn}
-                role={role}
-              />
-            }
-          />
+          <Route path="/" element={<Home />} />
+          <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
-          <Route
-            path="/admin"
-            element={<Admin currentUser={currentUser} loggedIn={loggedIn} />}
-          />
+          <Route path="/admin" element={<Admin />} />
           <Route path="/checkout" element={<CheckOut />} />
           <Route path="/newbook" element={<NewBook />} />
-          <Route
-            path="/bookreview"
-            element={<BookReviewPage current={currentBook} />}
-          />
+          <Route path="/bookreview" element={<BookReviewPage />} />
         </Routes>
       </div>
     </BrowserRouter>

@@ -5,14 +5,14 @@ import {
   Typography,
   ListItemText,
 } from "@mui/material";
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import { React } from "react";
+
+import { useSelector } from "react-redux";
 
 import BookReview from "../components/BookReview";
 
-function BookReviewPage({ current }) {
-  const navigate = useNavigate();
-  const book = current;
+function BookReviewPage() {
+  const book = useSelector((state) => state.books.currentBook);
   return (
     <div className="flex min-w-full justify-center items-center gap-4 mt-10">
       <Card className="p-3 ">
@@ -24,7 +24,7 @@ function BookReviewPage({ current }) {
           <Typography variant="subtitle2">Cost: ${book.cost}</Typography>
           <List>
             Tags:
-            {book.tags.map((item) => (
+            {book["tags"].map((item) => (
               <ListItemText>{item}</ListItemText>
             ))}
           </List>
@@ -35,7 +35,7 @@ function BookReviewPage({ current }) {
           <CardContent>
             <Typography>What People Are Saying:</Typography>
             <List>
-              {book.reviews.map((item) => (
+              {book["reviews"].map((item) => (
                 <>
                   <ListItemText className="underline">
                     {item.title}

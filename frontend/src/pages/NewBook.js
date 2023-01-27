@@ -9,6 +9,8 @@ import {
   Button,
 } from "@mui/material";
 
+import { useSelector } from "react-redux";
+
 //New Book Page
 function NewBook() {
   const [book_id, setBookId] = useState("");
@@ -25,6 +27,8 @@ function NewBook() {
     { value: "IN", label: "In" },
     { value: "Out", label: "Out" },
   ];
+
+  const currentUser = useSelector((state) => state.users.loggedIn);
 
   //Submit function... sending book data back to database
   //Needs to add error handling
@@ -142,6 +146,7 @@ function NewBook() {
           <Button variant="contained" onClick={(e) => navigate("/admin")}>
             Cancel
           </Button>
+          <Button onClick={(e) => console.log(currentUser)}>CLick</Button>
         </div>
       </div>
     </div>
