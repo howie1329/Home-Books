@@ -22,13 +22,13 @@ function BookListing({ title, tagFilter }) {
   //Get Books from database
   const getBooks = async () => {
     const response = await axios.get(`/api/books/t/${tagFilter}`)
-    const data = await response.json();
     if (response.status === 200) {
-      setBooks(data);
+      setBooks(response.data);
     }
   };
 
   const onClick = (item) => {
+    console.log(item)
     dispatch(setCurrentBook(item));
     navigate("/bookreview");
   };

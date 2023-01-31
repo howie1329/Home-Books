@@ -32,7 +32,7 @@ export const bookSlice = createSlice({
       state.allBooks = fetchBooks(state);
     },
     setCurrentBook: (state, action) => {
-      state.currentBook = action;
+      state.currentBook = action.payload;
     },
     default: (state) => {
       return state;
