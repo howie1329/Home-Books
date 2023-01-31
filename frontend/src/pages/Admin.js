@@ -50,7 +50,7 @@ function Admin() {
   const getBooks = async () => {
     const response = await axios.get("/api/books");
     setBooks(response.data);
-    dispatch(getAllBooks());
+    dispatch(response.data);
   };
 
   useEffect(() => {
