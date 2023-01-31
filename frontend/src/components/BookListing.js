@@ -46,6 +46,7 @@ function BookListing({ title, tagFilter }) {
         {books &&
           books.map((book) => (
             <li
+              key={book._id}
               className="flex underline justify-evenly"
               onClick={(e) => onClick(book)}
             >
