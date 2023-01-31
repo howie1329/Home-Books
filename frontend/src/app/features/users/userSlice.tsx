@@ -3,7 +3,7 @@ import axios from "axios";
 
 const initialState = { currentUserID: {}, role: "", loggedIn: false };
 
-export const roleDirection = (newrole, newloggedIn) => {
+export const roleDirection = (newrole:string, newloggedIn:boolean) => {
   if (newrole === "admin" && newloggedIn === true) {
     return "/admin";
   } else if (newrole === "reg" && newloggedIn === true) {

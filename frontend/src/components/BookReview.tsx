@@ -1,14 +1,17 @@
 import { TextField, Button, Card } from "@mui/material";
 import axios from "axios";
-import { React, useState } from "react";
+import React, { useState } from "react";
 
-function BookReview({ id, book }) {
+import { bookInterface } from "../interfaces/bookInterface";
+
+function BookReview({ id, book}:{id:String, book:bookInterface}) {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const [reviews, setReview] = useState(book.reviews);
 
   const handleSubmit = async () => {
     const review = { title, body };
+    //@ts-ignore
     setReview([...reviews, review]);
     const book = { reviews };
     console.log(book);

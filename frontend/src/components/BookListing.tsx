@@ -1,21 +1,23 @@
 import { Typography } from "@mui/material";
-import { React, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { setCurrentBook } from "../app/features/books/bookSlice";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 
+import { bookInterface } from "../interfaces/bookInterface";
 /*
 Component for list books found in database
 Needs to add search by tag ability 
 */
 
+
 function BookListing({ title, tagFilter }) {
   const dispatch = useDispatch();
 
   //Book sent from database
-  const [books, setBooks] = useState(null);
+  const [books, setBooks] = useState([]);
 
   const navigate = useNavigate();
 
@@ -27,7 +29,7 @@ function BookListing({ title, tagFilter }) {
     }
   };
 
-  const onClick = (item) => {
+  const onClick = (item:bookInterface) => {
     console.log(item)
     dispatch(setCurrentBook(item));
     navigate("/bookreview");
@@ -44,7 +46,7 @@ function BookListing({ title, tagFilter }) {
       </Typography>
       <ul>
         {books &&
-          books.map((book) => (
+          books.map((book:bookInterface) => (
             <li
               key={book._id}
               className="flex underline justify-evenly"

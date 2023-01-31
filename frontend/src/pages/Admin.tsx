@@ -1,4 +1,4 @@
-import { React, useState, useEffect } from "react";
+import React,{useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 //Component Imports
@@ -17,9 +17,13 @@ import {
 
 import axios from "axios";
 
+import { bookInterface } from "../interfaces/bookInterface";
+
 //Redux Import
 import { getAllBooks } from "../app/features/books/bookSlice";
 import { useSelector, useDispatch } from "react-redux";
+
+
 
 //Admin page
 function Admin() {
@@ -30,7 +34,7 @@ function Admin() {
   const dispatch = useDispatch();
   //Redux
 
-  const [books, setBooks] = useState();
+  const [books, setBooks] = useState([]);
   const [id, setId] = useState();
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
@@ -82,9 +86,10 @@ function Admin() {
           </TableHead>
           <TableBody className="border-2 border-black">
             {books &&
-              books.map((book) => (
+              books.map((book:bookInterface) => (
                 <BookTable
                   key={book._id}
+                  //@ts-ignore
                   id={book._id}
                   book={book}
                   active={active}

@@ -14,7 +14,7 @@ const getBooks = async () => {
   }
 };
 
-export const fetchBooks = async (state) => {
+/*export const fetchBooks = async (state) => {
   try {
     const response = await axios.get("/api/books");
     console.log(response);
@@ -22,14 +22,14 @@ export const fetchBooks = async (state) => {
   } catch (err) {
     return err.message;
   }
-};
+}; */ 
 
 export const bookSlice = createSlice({
   name: "books",
   initialState,
   reducers: {
     getAllBooks: (state) => {
-      state.allBooks = fetchBooks(state);
+      //state.allBooks.push(fetchBooks(state)) 
     },
     setCurrentBook: (state, action) => {
       state.currentBook = action.payload;

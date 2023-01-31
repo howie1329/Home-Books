@@ -1,11 +1,13 @@
-import { React } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 
 import { TableRow, TableCell, Button } from "@mui/material";
 import axios from "axios";
 
+import { bookInterface } from "../interfaces/bookInterface";
+
 //Creates Table Row Data of Book
-function BookTable({ book, id, setActive, active, setId, getBooks }) {
+function BookTable({ book, id, setActive, active, setId, getBooks }: {book:bookInterface}) {
   const navigate = useNavigate();
 
   const checkInOut = () => {

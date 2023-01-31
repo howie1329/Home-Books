@@ -7,15 +7,6 @@ import { Button, Typography } from "@mui/material";
 function NavBar() {
   const navigate = useNavigate();
 
-  const signInClick = () => {
-    if (document.cookie == "status=in") {
-      navigate("/admin");
-    } else {
-      navigate("/signin");
-    }
-    console.log(document.cookie);
-  };
-
   return (
     <div className=" flex justify-between border-2 border-black rounded-xl px-5 items-center">
       <Typography variant="h6" onClick={(e) => navigate("/")}>
