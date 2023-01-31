@@ -4,11 +4,13 @@ import { useNavigate } from "react-router-dom";
 
 import { setCurrentBook } from "../app/features/books/bookSlice";
 import { useDispatch } from "react-redux";
+import axios from "axios";
 
 /*
 Component for list books found in database
 Needs to add search by tag ability 
 */
+
 function BookListing({ title, tagFilter }) {
   const dispatch = useDispatch();
 
@@ -19,10 +21,9 @@ function BookListing({ title, tagFilter }) {
 
   //Get Books from database
   const getBooks = async () => {
-    const response = await fetch("/api/books/t/" + tagFilter);
+    const response = await axios.get(`/api/books/t/${tagFilter}`)
     const data = await response.json();
-    if (response.ok) {
-      console.log(data);
+    if (response.status === 200) {
       setBooks(data);
     }
   };

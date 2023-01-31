@@ -13,7 +13,9 @@ import SignInNavBar from "./components/SignInNavBar";
 import CheckOut from "./pages/CheckOut";
 import ProtectedRoute from "./components/ProtectedRoute";
 
+//Redux
 import { useSelector } from "react-redux";
+
 function App() {
   const currentLog = useSelector((state) => state.users.loggedIn);
 

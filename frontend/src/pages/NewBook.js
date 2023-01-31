@@ -11,6 +11,8 @@ import {
 
 import { useSelector } from "react-redux";
 
+import axios from "axios";
+
 //New Book Page
 function NewBook() {
   const [book_id, setBookId] = useState("");
@@ -28,20 +30,12 @@ function NewBook() {
     { value: "Out", label: "Out" },
   ];
 
-  const currentUser = useSelector((state) => state.users.loggedIn);
-
   //Submit function... sending book data back to database
   //Needs to add error handling
   const handleSubmit = async () => {
     const book = { book_id, title, author, pages, status, cost, tags };
     console.log(book);
-    const response = await fetch("/api/books", {
-      method: "POST",
-      body: JSON.stringify(book),
-      headers: {
-        "content-type": "application/json",
-      },
-    });
+    const response = axios.post("/api/books",book)
     navigate("/admin");
   };
 
@@ -146,7 +140,6 @@ function NewBook() {
           <Button variant="contained" onClick={(e) => navigate("/admin")}>
             Cancel
           </Button>
-          <Button onClick={(e) => console.log(currentUser)}>CLick</Button>
         </div>
       </div>
     </div>

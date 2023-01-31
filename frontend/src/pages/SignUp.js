@@ -10,6 +10,8 @@ import {
   Typography,
 } from "@mui/material";
 
+import axios from "axios";
+
 function SignUp() {
   const [user_id, setUser_id] = useState();
   const [fullname, setFullname] = useState();
@@ -21,13 +23,7 @@ function SignUp() {
 
   const handleSubmit = async () => {
     const user = { user_id, fullname, username, password, role };
-    const response = await fetch("/api/users", {
-      method: "POST",
-      body: JSON.stringify(user),
-      headers: {
-        "content-type": "application/json",
-      },
-    });
+    const res = await axios.post("/api/users",user)
     navigate("/");
   };
 

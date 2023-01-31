@@ -2,6 +2,7 @@ import { React } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { TableRow, TableCell, Button } from "@mui/material";
+import axios from "axios";
 
 //Creates Table Row Data of Book
 function BookTable({ book, id, setActive, active, setId, getBooks }) {
@@ -21,9 +22,7 @@ function BookTable({ book, id, setActive, active, setId, getBooks }) {
 
   //Deletes book from database then updates all books
   const handleDelete = async () => {
-    const response = await fetch("/api/books/" + id, {
-      method: "DELETE",
-    });
+    const response = await axios.delete(`/api/books/${id}`)
     getBooks();
   };
   return (

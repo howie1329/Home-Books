@@ -1,37 +1,35 @@
 import { React, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+//UI
 import { TextField, Button, Typography } from "@mui/material";
 
 //Redux
 import { signIn, roleDirection } from "../app/features/users/userSlice";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch} from "react-redux";
+
+import axios from "axios";
 
 function SignIn() {
-  const role = useSelector((state) => state.users.role);
-  const loggedIn = useSelector((state) => state.users.loggedIn);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
-  const navigate = useNavigate();
 
-  //Redux
-  const dispatch = useDispatch();
-  //Redux
+
 
   const handleSubmit = async () => {
-    const response = await fetch(`/api/users/user/${username}`);
-    const data = await response.json();
-    if (response.ok) {
-      if (password === data[0].password) {
+    const response = await axios.get(`/api/users/user/${username}`) 
+    if (response.status === 200) {
+      if (password === response.data[0].password) {
         const payData = {
-          currentUserID: data[0],
-          role: data[0].role,
+          currentUserID: response.data[0],
+          role: response.data[0].role,
           loggedIn: true,
         };
         dispatch(signIn(payData));
-        navigate(roleDirection(data[0].role, true));
-        document.cookie = "status=in";
+        navigate(roleDirection(response.data[0].role, true));
       } else {
         alert("username or password is wrong");
       }

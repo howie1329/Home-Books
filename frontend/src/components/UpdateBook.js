@@ -1,6 +1,7 @@
 import React from "react";
 
 import { TextField, Button } from "@mui/material";
+import axios from "axios";
 //Book Form for updating
 function UpdateBook({
   details,
@@ -19,13 +20,7 @@ function UpdateBook({
   //Submit function... sending book data back to database
   const handleSubmit = async () => {
     const book = { title, author, pages };
-    const response = await fetch("/api/books/" + id, {
-      method: "PATCH",
-      body: JSON.stringify(book),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const response = await axios.patch(`/api/books/${id}`,book)
     setActive(false);
     getBooks();
   };

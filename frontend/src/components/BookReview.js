@@ -1,4 +1,5 @@
 import { TextField, Button, Card } from "@mui/material";
+import axios from "axios";
 import { React, useState } from "react";
 
 function BookReview({ id, book }) {
@@ -11,13 +12,7 @@ function BookReview({ id, book }) {
     setReview([...reviews, review]);
     const book = { reviews };
     console.log(book);
-    const response = await fetch(`/api/books/${id}`, {
-      method: "PATCH",
-      body: JSON.stringify(book),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const response = await axios.patch(`/api/books/${id}`,book)
   };
   return (
     <Card className="flex flex-col items-center gap-2 p-2">
