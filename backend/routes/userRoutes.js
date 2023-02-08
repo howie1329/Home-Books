@@ -5,6 +5,7 @@ const {
   deleteUser,
   createUser,
   getUsername,
+  login,
 } = require("../controllers/userControllers");
 
 const router = express.Router();
@@ -20,6 +21,9 @@ router.get("/:id", getUser);
 
 //create user
 router.post("/", createUser);
+
+//Login User
+router.post("/login",login)
 
 //delete user
 router.delete("/:id", deleteUser);

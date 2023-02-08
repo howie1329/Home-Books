@@ -1,5 +1,8 @@
 const User = require("../models/userModel");
+const bcrypt = require("bcryptjs")
+const jwt = require("jsonwebtoken") 
 const mongoose = require("mongoose");
+
 
 //get all users
 const getUsers = async (req, res) => {
@@ -17,29 +20,49 @@ const getUser = async (req, res) => {
 const getUsername = async (req, res) => {
   const { name } = req.params;
   try {
-    const user = await User.find({ username: name });
+    const user = await User.findOne({ username: name });
     res.status(200).json(user);
   } catch (error) {
-    res.status(404).json({ Error: error });
+    const user = {name:"Howard"}
+    console.log("here")
+    res.status(200).json(user)
   }
 };
 
+const generateToken = (id) =>{
+  return jwt.sign({id}, process.env.JWT_SECRET, {expiresIn: '30d'})
+}
+
+const login = async(req, res) =>{
+  const {username, password} = req.body
+
+  const user = await User.findOne({username})
+  const token = generateToken(user._id)
+  if (user && bcrypt.compare(password,user.password)){
+    res.status(200).json({user,token})
+  }else{
+    res.status(401) 
+  }
+}
+
 //create a user
 const createUser = async (req, res) => {
-  const { user_id, fullname, username, password, role } = req.body;
-
-  try {
-    const user = await User.create({
-      user_id,
-      fullname,
-      username,
-      password,
-      role,
-    });
-    res.status(200).json(user);
-  } catch (error) {
-    res.status(400).json({ error: error.message });
-  }
+  let { user_id, fullname, username, password, role } = req.body;
+  bcrypt.hash(password,10,async (err,hashedPassword)  => {
+    password = hashedPassword
+    try {
+      const user = await User.create({
+        user_id,
+        fullname,
+        username,
+        password,
+        role,
+      });
+      res.status(200).json(user);
+    } catch (error) {
+      res.status(400).json({ error: err });
+    }
+  })  
 };
 
 //delete a user
@@ -57,4 +80,5 @@ module.exports = {
   getUser,
   getUsers,
   getUsername,
+  login
 };

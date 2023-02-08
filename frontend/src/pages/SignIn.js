@@ -20,19 +20,18 @@ function SignIn() {
 
 
   const handleSubmit = async () => {
-    const response = await axios.get(`/api/users/user/${username}`) 
+    const response = await axios.post("/api/users/login",{username,password}) 
+    console.log(response)
     if (response.status === 200) {
-      if (password === response.data[0].password) {
-        const payData = {
-          currentUserID: response.data[0],
-          role: response.data[0].role,
-          loggedIn: true,
-        };
-        dispatch(signIn(payData));
-        navigate(roleDirection(response.data[0].role, true));
-      } else {
-        alert("username or password is wrong");
-      }
+      const payData = {
+        currentUserID: response.data.user,
+        role: response.data.user.role,
+        loggedIn: true,
+      };
+      dispatch(signIn(payData));
+      navigate(roleDirection(response.data.user.role, true));
+    } else{
+      alert("Wrong Username... Can't Find User")
     }
   };
 
