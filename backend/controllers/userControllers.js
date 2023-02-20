@@ -37,12 +37,22 @@ const login = async(req, res) =>{
   const {username, password} = req.body
 
   const user = await User.findOne({username})
-  const token = generateToken(user._id)
   if (user && bcrypt.compare(password,user.password)){
+    const token = generateToken(user._id)
     res.status(200).json({user,token})
   }else{
     res.status(401) 
   }
+}
+
+//Check Token
+const tokenCheck = (req,res) =>{
+  const token = req.headers.authorization
+  console.log(token)
+
+  var decoded = jwt.verify(token,process.env.JWT_SECRET)
+  res.json({code:decoded})
+  console.log(decoded)   
 }
 
 //create a user
@@ -80,5 +90,6 @@ module.exports = {
   getUser,
   getUsers,
   getUsername,
-  login
+  login,
+  tokenCheck
 };

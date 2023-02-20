@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import {
@@ -24,6 +24,11 @@ function NewBook() {
   const [cost, setCost] = useState("");
 
   const navigate = useNavigate();
+  const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZTMxMzQ4N2ZhYjk2ODQ2NjE0OTJkOCIsImlhdCI6MTY3NTk2NDMwMiwiZXhwIjoxNjc4NTU2MzAyfQ.72fMX8dpuFBVcs3QdC_D0JeyCRH_U2U3YR_tcxgy66s.eyJpZCI6IjYzZTRjN2QwNGE5OWVkZDlmNDkxM2M0OSIsImlhdCI6MTY3NTkzNzc1MSwiZXhwIjoxNjc4NTI5NzUxfQ.pwx6c1HCJ_oxsMd08Yv2B2_8LtZffdop72iaNm3PWlI.eyJpZCI6IjYzZTMxMzQ4N2ZhYjk2ODQ2NjE0OTJkOCIsImlhdCI6MTY3NTkzNzM3OSwiZXhwIjoxNjc4NTI5Mzc5fQ.mLq-1zZ46P9jIvHNN0sUYWtE_9_iEBsj3aHNm4WBaps"
+
+  useEffect(() => {
+    const response = axios.get("/api/users/token",{ headers: {"Authorization" : `Bearer ${token}`} })
+  })
 
   const statusValues = [
     { value: "IN", label: "In" },

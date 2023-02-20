@@ -6,6 +6,7 @@ const {
   createUser,
   getUsername,
   login,
+  tokenCheck,
 } = require("../controllers/userControllers");
 
 const router = express.Router();
@@ -18,6 +19,9 @@ router.get("/user/:name", getUsername);
 
 //get single user
 router.get("/:id", getUser);
+
+//Check Token
+router.get("/token",tokenCheck)
 
 //create user
 router.post("/", createUser);

@@ -27,6 +27,7 @@ function SignIn() {
         currentUserID: response.data.user,
         role: response.data.user.role,
         loggedIn: true,
+        token: response.data.token
       };
       dispatch(signIn(payData));
       navigate(roleDirection(response.data.user.role, true));

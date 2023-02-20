@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const initialState = { currentUserID: {}, role: "", loggedIn: false };
+const initialState = { currentUserID: {}, role: "", loggedIn: false , token:""};
 
 export const roleDirection = (newrole, newloggedIn) => {
   if (newrole === "admin" && newloggedIn === true) {
@@ -19,10 +19,11 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     signIn: (state, action) => {
-      const { currentUserID, role, loggedIn } = action.payload;
+      const { currentUserID, role, loggedIn, token } = action.payload;
       state.currentUserID = currentUserID;
       state.role = role;
       state.loggedIn = loggedIn;
+      state.token = token
     },
     signOut: (state) => {
       state.currentUserID = {};
